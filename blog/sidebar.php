@@ -41,9 +41,25 @@
 		<h2>Categories</h2>
 		<ul>
 			<?php //loop through each post in the result set
-			while( $row_cats = $result_cats->fetch_assoc() ){ ?>
-				<li><?php echo $row_cats['name']; ?></li>
-			<?php } //end while 
+			while( $row_cats = $result_cats->fetch_assoc() ){ 
+				//Count the number of posts in THIS category
+				$this_category = $row_cats['category_id'];
+				//query!
+				$query_count = "SELECT COUNT(*) AS total
+								FROM posts
+								WHERE category_id = $this_category";
+				//run it
+				$result_count = $db->query($query_count);
+				//count only returns ONE row, so we can skip the loop and just grab the count
+				$row_count = $result_count->fetch_assoc();
+				//only show the category if there are posts in it
+				if( $row_count['total'] > 0){
+				?>
+				<li><?php echo $row_cats['name']; ?> 
+					(<?php echo $row_count['total']; ?>)</li>
+			<?php 
+				}//end if the category has posts
+			} //end while 
 			//free the result resources
 			$result_cats->free();
 			?>
