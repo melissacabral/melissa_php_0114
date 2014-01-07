@@ -1,5 +1,9 @@
-<?php //load the database connection
-require('db_connect.php'); ?>
+<?php 
+//load the database connection
+require('db_connect.php');
+//get the functions file
+include_once('functions.php'); 
+?>
 <!doctype HTML>
 <html>
 <head>
@@ -12,10 +16,12 @@ require('db_connect.php'); ?>
 	<main>
 		<?php 
 		//get up to 2 blog posts that are published, newest first
-		$my_query = "SELECT title, body 
-					FROM posts
-					WHERE is_published = 1
-					ORDER BY date DESC
+		$my_query ="SELECT posts.title, posts.body, posts.post_id, posts.date, users.username,  categories.*
+					FROM posts, users, categories
+					WHERE posts.is_published = 1
+					AND users.user_id = posts.user_id
+					AND posts.category_id = categories.category_id
+					ORDER BY posts.date DESC
 					LIMIT 2";
 		//run it
 		$result = $db->query($my_query);
@@ -27,6 +33,10 @@ require('db_connect.php'); ?>
 		?>
 		<article>
 			<h2><?php echo $row['title']; ?></h2>
+			<div class="post-meta">
+				Posted in <?php echo $row['name']; ?> 
+				by <?php echo $row['username']; ?> 
+				on <?php echo convert_date($row['date']); ?></div>
 			<p><?php echo $row['body']; ?></p>
 		</article>
 		
