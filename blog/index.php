@@ -20,6 +20,9 @@ include_once('functions.php');
 			case 'blog':
 				include('content_blog.php');
 			break;
+			case 'single':
+				include('content_single.php');
+			break;
 			default:
 				include('content_home.php');
 		}
