@@ -1,6 +1,6 @@
 <aside id="sidebar">
 	<?php //query to get up to 15 published blog post titles, newest first
-	$query_latest = "SELECT title 
+	$query_latest = "SELECT title, post_id 
 					FROM posts
 					WHERE is_published = 1
 					ORDER BY date DESC
@@ -16,7 +16,13 @@
 		<ul>
 			<?php //loop through each post in the result set
 			while( $row_latest = $result_latest->fetch_assoc() ){ ?>
-				<li><?php echo $row_latest['title']; ?></li>
+				<li>
+					<a href="index.php?page=single&amp;post_id=
+						<?php echo $row_latest['post_id']; ?>">
+					
+					<?php echo $row_latest['title']; ?>
+					</a>
+				</li>
 			<?php } //end while 
 			//free the result resources
 			$result_latest->free();
