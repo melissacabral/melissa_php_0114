@@ -1,6 +1,9 @@
 <?php //which post are we displaying?
 $post_id = $_GET['post_id']; 
 
+//attach the comment parser file
+include('parse_comment.php');
+
 //make sure the post_id is a number
 if(is_numeric($post_id)){
 	//write a query to get all the info about THIS post - author, category name, etc..
@@ -26,17 +29,37 @@ if(is_numeric($post_id)){
 		in the category <?php echo $row['name']; ?> 
 		by <?php echo $row['username']; ?></div>
 </article>
-<section class="comments">
-	<h2>Comments on this post</h2>
 
-	<ol>
-		<li class="one-comment">
-			<h3>NAME wrote:</h3>
-			<p>BODY</p>
-			<time>DATE</time>
-		</li>
-	</ol>
-</section>
+		<?php //get all the comments written about this post
+		$query_comments = "SELECT *
+							FROM comments
+							WHERE post_id = $post_id
+							ORDER BY date ASC";
+		//run it
+		$result_comments = $db->query($query_comments);
+		$comments_number = $result_comments->num_rows;
+		//hide the section if there are NO comments
+		if($comments_number > 0){
+		 ?>
+		<section class="comments">
+			<h2><?php echo $comments_number ?> Comments on this post</h2>
+			<ol>
+			<?php while( $row_comments = $result_comments->fetch_assoc() ){ ?>
+				<li class="one-comment">
+					<h3><?php echo $row_comments['name']; ?> wrote:</h3>
+					<p><?php echo $row_comments['body']; ?></p>
+					<time><?php echo convert_date($row_comments['date']); ?></time>
+				</li>
+			<?php }//end comment loop ?>
+			</ol>
+		</section>
+
+		<?php
+		}else{ //no comments
+			echo 'No comments yet on this post.';
+		}
+		?>
+		<?php include('comment_form.php'); ?>
 <?php
 	}else{
 		echo 'Sorry, No post found.';

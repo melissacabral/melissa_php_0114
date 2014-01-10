@@ -17,5 +17,15 @@ function convert_date($dateR){
 }
 
 
+/**
+ * Clean data before submitting to DB
+ */
+function clean_input( $data ){
+	global $db;
+	return mysqli_real_escape_string( $db, strip_tags(trim( $data )));
+}
+
+
+
 
 //no close php
