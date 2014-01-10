@@ -1,0 +1,23 @@
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+body{
+    width:98%;
+    max-width:60em;
+    margin:0 auto;        
+    font-family: Cambria, Georgia, serif;
+    font-size:100%;
+}
+main{
+    width:65%;
+    float:left;
+}
+aside#sidebar{
+    width:33.33%;
+    float:right;
+
+}
+footer{
+    clear: both;
+}

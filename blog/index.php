@@ -8,6 +8,7 @@ include_once('functions.php');
 <html>
 <head>
 	<title>My PHP Blog!</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<header>
