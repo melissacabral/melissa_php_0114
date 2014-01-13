@@ -25,7 +25,4 @@ function clean_input( $data ){
 	return mysqli_real_escape_string( $db, strip_tags(trim( $data )));
 }
 
-
-
-
 //no close php
