@@ -19,11 +19,11 @@
 		if( $result->num_rows >= 1){ 
 			while( $row = $result->fetch_assoc() ){ ?>
 		<item>
-			<title><?php echo $row['title']; ?></title>
+			<title><?php echo htmlentities($row['title']); ?></title>
 			<link>http://localhost/melissa_php_0114/blog/index.php?page=single&amp;post_id=<?php echo $row['post_id']; ?></link>
 			<guid>http://localhost/melissa_php_0114/blog/index.php?page=single&amp;post_id=<?php echo $row['post_id']; ?></guid>
 			<author><?php echo $row['email']; ?></author>
-			<description><?php echo $row['body']; ?></description>
+			<description><?php echo htmlentities($row['body']); ?></description>
 		</item>
 		<?php 
 			} //end while

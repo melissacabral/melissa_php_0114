@@ -1,4 +1,7 @@
 <aside id="sidebar">
+	<a href="rss.php"> <img src="img/rss.png"> Subscribe to my feed!</a>
+
+
 	<?php //query to get up to 15 published blog post titles, newest first
 	$query_latest = "SELECT title, post_id 
 					FROM posts
