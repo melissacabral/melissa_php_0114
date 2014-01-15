@@ -25,4 +25,16 @@ function clean_input( $data ){
 	return mysqli_real_escape_string( $db, strip_tags(trim( $data )));
 }
 
+
+/**
+ * function to display number of comments with good grammar
+ */
+function comments_number($number){
+	if( $number == 1 ){
+		echo 'One Comment';
+	}else{
+		echo $number . ' Comments';
+	}
+}
+
 //no close php
