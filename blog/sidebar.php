@@ -1,4 +1,15 @@
 <aside id="sidebar">
+	<section class="searchform">
+		<form method="get" action="index.php">
+			<label for="phrase">Search for:</label>
+			<input type="text" name="phrase" id="phrase">
+
+			<input type="submit" value="Search">
+			<input type="hidden" name="page" value="search">
+		</form>
+	</section>
+
+
 	<a href="rss.php"> <img src="img/rss.png"> Subscribe to my feed!</a>
 
 

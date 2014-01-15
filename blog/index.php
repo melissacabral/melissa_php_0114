@@ -25,6 +25,9 @@ include_once('functions.php');
 			case 'single':
 				include('content_single.php');
 			break;
+			case 'search':
+				include('content_search.php');
+			break;
 			default:
 				include('content_home.php');
 		}
