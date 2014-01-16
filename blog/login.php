@@ -60,6 +60,10 @@ if( $_GET['action'] == 'logout' ){
 elseif($_COOKIE['logged_in'] == true){
 	//re-create the session
 	$_SESSION['logged_in'] = true;
+	//remember WHO is logged in
+	$_SESSION['user_id'] = $_COOKIE['user_id'];
+	//send them to the admin panel
+	header('Location:admin.php');
 }
 ?>
 <!doctype html>

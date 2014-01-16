@@ -17,6 +17,7 @@ if( $_SESSION['logged_in'] != true ){
 	<title>Admin Panel</title>
 </head>
 <body>
+	<a href="login.php?action=logout">Log Out!</a>
 	<h1>This is the admin panel - only logged in users can see this!</h1>
 </body>
 </html>
