@@ -15,11 +15,11 @@ if( $_SESSION['logged_in'] != true ){
 <html>
 <head>
 	<title>Admin Panel</title>
+	<link rel="stylesheet" type="text/css" href="admin_style.css">
 </head>
 <body>
 	<header>
-		<a href="login.php?action=logout">Log Out!</a>
-		<h1>This is the admin panel - only logged in users can see this!</h1>
+		<h1>Blog Admin Panel</h1>
 		<nav>
 			<ul>
 				<li><a href="admin.php">Dashboard</a></li>
@@ -29,6 +29,9 @@ if( $_SESSION['logged_in'] != true ){
 				<li><a href="admin.php?page=editprofile">Edit Profile</a></li>
 			</ul>
 		</nav>
+		<ul class="utilities">
+			<li><a href="login.php?action=logout" class="warn">Log Out!</a></li>
+		</ul>
 	</header>
 
 	<main>
