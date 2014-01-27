@@ -71,7 +71,18 @@ if($_POST['did_upload']){
 
 		//add it to the DB if it worked
 		if($didcreate){
-			
+			//DELETE OLD FILE
+			//look up the old image name
+			$query_oldfile = "SELECT $size_name as size FROM users where user_id = $user_id LIMIT 1";
+            $result_oldfile = $db->query($query_oldfile);
+            if($result_oldfile->num_rows == 1){
+                $row_oldfile = $result_oldfile->fetch_assoc();
+                //get filepath of old file
+                $old_file = $row_oldfile['size'];
+                 //Delete the file from the directory with unlink()
+                @unlink($old_file);
+            }
+			//END DELETE OLD FILE
 			//update the existing logged in user with the new image
 			$query_update = "UPDATE users
 							SET $size_name = '$filename'
