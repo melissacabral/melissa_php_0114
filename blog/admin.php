@@ -43,6 +43,9 @@ if( $_SESSION['logged_in'] != true ){
 			case 'manage':
 				include('admin_manage.php');
 			break;
+			case 'edit':
+				include('admin_edit.php');
+			break;
 			case 'comments':
 				include('admin_comments.php');
 			break;
